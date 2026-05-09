@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Special Message for You</title>
-    <!-- Importing a romantic Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
     <style>
@@ -92,7 +91,7 @@ body {
             color: var(--primary-pink);
             position: absolute;
             left: 50%;
-            transform: translateX(10%); /* Offset from center */
+            transform: translateX(10%);
             border: 1px solid var(--soft-pink);
         }
 
@@ -242,18 +241,15 @@ body {
         moveButton();
     });
 
-    // Reveal Letter
     yesBtn.addEventListener("click", () => {
         questionBox.style.display = "none";
         letterBox.style.display = "flex";
         
-        // Small delay to trigger the opening animation
         setTimeout(() => {
             envelope.classList.add("opened");
         }, 300);
     });
 
-    // Heart Rain Effect
     function createHeart() {
         const heart = document.createElement("div");
         const hearts = ["❤️", "💖", "💗", "🌸", "✨"];
