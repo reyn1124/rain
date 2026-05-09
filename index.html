@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pikon ka ba?</title>
+
+  <style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body{
+        background: linear-gradient(135deg, #ffcce6, #ffd9f2, #ffe6f7);
+        height:100vh;
+        overflow:hidden;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:relative;
+    }
+
+    .container{
+        text-align:center;
+        background:#fff0f7;
+        padding:40px 25px;
+        border-radius:30px;
+        width:90%;
+        max-width:420px;
+        box-shadow:0 10px 30px rgba(255,105,180,0.25);
+        border:3px solid #ffb6d9;
+        position:relative;
+        z-index:2;
+    }
+
+    h1{
+        color:#ff4fa3;
+        margin-bottom:15px;
+        font-size:2.3rem;
+    }
+
+    p{
+        color:#a14d75;
+        margin-bottom:25px;
+        line-height:1.7;
+        font-size:1rem;
+    }
+
+    .buttons{
+        position:relative;
+        height:120px;
+    }
+
+    button{
+        border:none;
+        padding:12px 30px;
+        border-radius:40px;
+        font-size:1rem;
+        cursor:pointer;
+        transition:0.2s;
+        font-weight:bold;
+    }
+
+    #yesBtn{
+        background:#ff69b4;
+        color:white;
+        box-shadow:0 5px 15px rgba(255,105,180,0.4);
+    }
+
+    #yesBtn:hover{
+        transform:scale(1.08);
+    }
+
+    #noBtn{
+        background:#ffd6e8;
+        color:#ff4fa3;
+        position:absolute;
+        left:55%;
+        top:0;
+    }
+
+    .letter{
+        display:none;
+        animation:fade 1s ease;
+    }
+
+    @keyframes fade{
+        from{
+            opacity:0;
+            transform:translateY(20px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+    .heart{
+        position:absolute;
+        color:#ff69b4;
+        font-size:22px;
+        animation:float 5s linear infinite;
+        z-index:1;
+    }
+
+    @keyframes float{
+        from{
+            transform:translateY(100vh);
+            opacity:1;
+        }
+        to{
+            transform:translateY(-120vh);
+            opacity:0;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container" id="questionBox">
+    <h1>Pikon ka ba? 😚</h1>
+    <p>Choose wisely HAHAHA</p>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<div class="container letter" id="letterBox">
+    <h1>Hi baby 💗</h1>
+
+    <p>
+        I know this is kinda cheesy HAHAHA but I really wanted to ask you this in a special way.
+        <br><br>
+        Thank you for being here with me, for making me smile, making my days better, and for being someone so important to me.
+        <br><br>
+        So now... officially,
+        <br><br>
+        Will you be my boyfriend? 💌
+        <br><br>
+        From now on, ikaw na talaga. 😚
+    </p>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.floor(Math.random() * 250);
+        const y = Math.floor(Math.random() * 80);
+
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+    });
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+        document.getElementById("questionBox").style.display = "none";
+        document.getElementById("letterBox").style.display = "block";
+    });
+
+    function createHeart(){
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💗";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
