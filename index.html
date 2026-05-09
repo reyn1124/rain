@@ -117,7 +117,83 @@
         }
     }
 </style>
+<style>
+    .letter-wrapper{
+        display:none;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        animation:fade 1s ease;
+    }
 
+    .envelope{
+        position:relative;
+        width:340px;
+        height:230px;
+        background:#ff9ecb;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(255,105,180,0.3);
+        overflow:hidden;
+    }
+
+    .flap{
+        position:absolute;
+        width:100%;
+        height:100%;
+        background:#ffb6d9;
+        clip-path: polygon(0 0, 50% 55%, 100% 0);
+        transform-origin:top;
+        animation:openFlap 1.5s forwards;
+        z-index:3;
+    }
+
+    .letter-paper{
+        position:absolute;
+        bottom:-100%;
+        left:50%;
+        transform:translateX(-50%);
+        width:88%;
+        height:85%;
+        background:#fff0f7;
+        border-radius:15px;
+        padding:20px;
+        text-align:center;
+        animation:slideUp 1.5s forwards;
+        animation-delay:1s;
+        z-index:2;
+        overflow:auto;
+    }
+
+    .letter-paper h1{
+        color:#ff4fa3;
+        font-size:1.7rem;
+        margin-bottom:10px;
+    }
+
+    .letter-paper p{
+        color:#a14d75;
+        line-height:1.6;
+        font-size:0.95rem;
+    }
+
+    @keyframes openFlap{
+        0%{
+            transform:rotateX(0deg);
+        }
+        100%{
+            transform:rotateX(180deg);
+        }
+    }
+
+    @keyframes slideUp{
+        0%{
+            bottom:-100%;
+        }
+        100%{
+            bottom:10px;
+        }
+    }
+</style>
 </head>
 
 <body>
@@ -132,54 +208,65 @@
     </div>
 </div>
 
-<div class="container letter" id="letterBox">
-    <h1>Hi baby 💗</h1>
+<div class="letter-wrapper" id="letterBox">
 
-    <p>
-        I know this is kinda cheesy HAHAHA but I really wanted to ask you this in a special way.
-        <br><br>
-        Thank you for being here with me, for making me smile, making my days better, and for being someone so important to me.
-        <br><br>
-        So now... officially,
-        <br><br>
-        Will you be my boyfriend? 💌
-        <br><br>
-        From now on, ikaw na talaga. 😚
-    </p>
+    <div class="envelope">
+        <div class="flap"></div>
+
+        <div class="letter-paper">
+            <h1>Hi baby 💗</h1>
+
+            <p>
+                hello baby,
+                <br><br>
+                 I've been thinking of this for a long time, i want to do it in person sana but i can't wait much longer.
+                <br><br>
+                Baby i want to build my future with you and to travel the world, have the family we want.
+                <br><br>
+                I think 7 months is enough for me to give you the answer
+                <br><br>
+                and YES i want to settle down with you my baby!
+            </p>
+        </div>
+    </div>
+
 </div>
-
+  
 <script>
-    const noBtn = document.getElementById("noBtn");
+const noBtn = document.getElementById("noBtn");
 
-    noBtn.addEventListener("mouseover", () => {
-        const x = Math.floor(Math.random() * 250);
-        const y = Math.floor(Math.random() * 80);
+function moveButton(e) {
+    if (e.type === 'touchstart') e.preventDefault();
 
-        noBtn.style.left = `${x}px`;
-        noBtn.style.top = `${y}px`;
-    });
+    const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
+    const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
 
-    document.getElementById("yesBtn").addEventListener("click", () => {
-        document.getElementById("questionBox").style.display = "none";
-        document.getElementById("letterBox").style.display = "block";
-    });
+    noBtn.style.position = 'fixed'; 
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+}
 
-    function createHeart(){
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "💗";
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
 
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+document.getElementById("yesBtn").addEventListener("click", () => {
+    document.getElementById("questionBox").style.display = "none";
+    document.getElementById("letterBox").style.display = "flex"; 
+});
 
-        document.body.appendChild(heart);
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
 
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
-    }
-
-    setInterval(createHeart, 300);
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+setInterval(createHeart, 300);
 </script>
 
 </body>
